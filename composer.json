@@ -1,5 +1,5 @@
 {
-  "name": "pensoft/services-provider-plugin",
+  "name": "pensoft/servicesprovider-plugin",
   "type": "october-plugin",
   "description": "None",
   "require": {
