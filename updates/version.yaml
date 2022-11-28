@@ -5,3 +5,5 @@
     - 'AWS retrieve file from s3'
 1.0.4:
     - 'composer json file'
+1.0.5:
+    - 'fix empty image path'

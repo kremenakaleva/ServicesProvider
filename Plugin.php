@@ -62,18 +62,21 @@ class Plugin extends PluginBase
         MarkupManager::instance()->registerCallback(function ($manager) {
             $manager->registerFunctions([
                 'getAWSFile' => function ($path) {
-                    $removeStr = 'https://s3-' . env('AWS_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/';
-                    $key = str_replace($removeStr, '', $path);
-                    $client = Storage::disk('s3')->getDriver()->getAdapter()->getClient();
+                    if($path){
+                        $removeStr = 'https://s3-' . env('AWS_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/';
+                        $key = str_replace($removeStr, '', $path);
+                        $client = Storage::disk('s3')->getDriver()->getAdapter()->getClient();
 
-                    $command = $client->getCommand('GetObject', [
-                        'Bucket' => env('AWS_BUCKET'),
-                        'Key' => $key
-                    ]);
-                    $request = $client->createPresignedRequest($command, '+20 minutes');
-                    $presignedUrl = (string)$request->getUri();
+                        $command = $client->getCommand('GetObject', [
+                            'Bucket' => env('AWS_BUCKET'),
+                            'Key' => $key
+                        ]);
+                        $request = $client->createPresignedRequest($command, '+20 minutes');
+                        $presignedUrl = (string)$request->getUri();
 
-                    return $presignedUrl;
+                        return $presignedUrl;
+                    }
+                    return false;
                 },
             ]);
         });
