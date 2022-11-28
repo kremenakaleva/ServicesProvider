@@ -1,3 +1,5 @@
 1.0.1: First version of ServicesProvider
 1.0.2:
-- 'Set additional data for rainlab.user.getNotificationVars event'
+    - 'Set additional data for rainlab.user.getNotificationVars event'
+1.0.3:
+    - 'AWS retrieve file from s3'
